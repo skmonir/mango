@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
-	"strconv"
 	"strings"
 	"time"
 
@@ -122,16 +121,9 @@ func Create(cfg config.Configuration, cmd string) error {
 		return err
 	}
 
-	if _, err := strconv.Atoi(contestId); err != nil {
-		return errors.New("contest id not valid")
-	}
-
-	if err := config.SetContest(contestId); err != nil {
-		return errors.New("error while saving config")
-	}
-	cfg, err = config.GetConfig()
-	if err != nil {
-		return errors.New("error while fetching config")
+	cfg.CurrentContestId = contestId
+	if cfg.CurrentContestId == "" {
+		return errors.New("please use contest & problem id combination like 1512G")
 	}
 
 	if problemId == "" {
@@ -142,6 +134,10 @@ func Create(cfg config.Configuration, cmd string) error {
 		if err := CreateProblem(cfg, problemId); err != nil {
 			return err
 		}
+	}
+
+	if err := config.SetContest(contestId); err != nil {
+		return errors.New("error while saving config")
 	}
 
 	return nil

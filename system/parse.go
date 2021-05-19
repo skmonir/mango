@@ -100,7 +100,7 @@ func findSample(body []byte) (input [][]byte, output [][]byte, err error) {
 	a := irg.FindAllSubmatch(body, -1)
 	b := org.FindAllSubmatch(body, -1)
 	if a == nil || b == nil || len(a) != len(b) {
-		return nil, nil, fmt.Errorf("cannot parse sample with input %v and output %v", len(a), len(b))
+		return nil, nil, fmt.Errorf("cannot parse samples")
 	}
 	for i := 0; i < len(a); i++ {
 		input = append(input, utils.FilterHtml(a[i][1]))
@@ -203,16 +203,9 @@ func Parse(cfg config.Configuration, cmd string) error {
 		return err
 	}
 
-	if _, err := strconv.Atoi(contestId); err != nil {
-		return errors.New("contest id not valid")
-	}
-
-	if err := config.SetContest(contestId); err != nil {
-		return errors.New("error while saving config")
-	}
-	cfg, err = config.GetConfig()
-	if err != nil {
-		return errors.New("error while fetching config")
+	cfg.CurrentContestId = contestId
+	if cfg.CurrentContestId == "" {
+		return errors.New("please use contest & problem id combination like 1512G")
 	}
 
 	if problemId == "" {
@@ -229,6 +222,10 @@ func Parse(cfg config.Configuration, cmd string) error {
 			ansi.Println(color.New(color.FgRed).Sprintf("Error while parsing problem %v", problemId))
 			return err
 		}
+	}
+
+	if err := config.SetContest(contestId); err != nil {
+		return errors.New("error while saving config")
 	}
 
 	return nil

@@ -39,34 +39,26 @@ func OpenProblem(cfg config.Configuration, problemId string) error {
 }
 
 func Open(cfg config.Configuration, cmd string) error {
-	if cmd[0] < '0' || cmd[0] > '9' {
-		if err := OpenProblem(cfg, cmd); err != nil {
+	contestId, problemId, err := utils.ParseContestAndProblemId(cmd)
+	if err != nil {
+		return err
+	}
+	if contestId != "" {
+		cfg.CurrentContestId = contestId
+	}
+	if cfg.CurrentContestId == "" {
+		return errors.New("please set current contest id or use contest & problem id combination like 1512G")
+	}
+
+	if problemId == "" {
+		sourcePath := utils.GetSourceDirPath(cfg)
+		problemIdList := utils.GetFilenamesInDir(sourcePath)
+		if err := OpenContest(cfg, problemIdList); err != nil {
 			return err
 		}
 	} else {
-		contestId, problemId, err := utils.ParseContestAndProblemId(cmd)
-		if err != nil {
+		if err := OpenProblem(cfg, problemId); err != nil {
 			return err
-		}
-
-		if err := config.SetContest(contestId); err != nil {
-			return errors.New("error while saving config")
-		}
-		cfg, err = config.GetConfig()
-		if err != nil {
-			return errors.New("error while fetching config")
-		}
-
-		if problemId == "" {
-			sourcePath := utils.GetSourceDirPath(cfg)
-			problemIdList := utils.GetFilenamesInDir(sourcePath)
-			if err := OpenContest(cfg, problemIdList); err != nil {
-				return err
-			}
-		} else {
-			if err := OpenProblem(cfg, problemId); err != nil {
-				return err
-			}
 		}
 	}
 

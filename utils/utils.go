@@ -20,6 +20,10 @@ import (
 	"github.com/skmonir/mango/dto"
 )
 
+func IsDigit(r rune) bool {
+	return '0' <= r && r <= '9'
+}
+
 func IsFileExist(filePath string) bool {
 	info, err := os.Stat(filePath)
 	if err != nil || os.IsNotExist(err) {
@@ -131,19 +135,22 @@ func ParseCommand(s string) (res []string) {
 func ParseContestAndProblemId(cmd string) (string, string, error) {
 	cmd = strings.TrimSpace(cmd)
 	if len(cmd) == 0 {
-		return "", "", errors.New("command is empty")
+		return "", "", errors.New("command is not valid")
 	}
 
-	if cmd[0] < '0' || cmd[0] > '9' {
-		return "", cmd, nil
+	ptr, sz := 0, len(cmd)
+
+	contestId := ""
+	for ptr < sz && IsDigit(rune(cmd[ptr])) {
+		contestId += string(cmd[ptr])
+		ptr++
 	}
 
-	contest_regexp := regexp.MustCompile(`^([\d]+)[\s\S]*`)
-	problem_regexp := regexp.MustCompile(`^[\d]+([\s\S]*)`)
-
-	cmd_byte := []byte(cmd)
-	contestId := string(contest_regexp.FindSubmatch(cmd_byte)[1])
-	problemId := string(problem_regexp.FindSubmatch(cmd_byte)[1])
+	problemId := ""
+	for ptr < sz && rune(cmd[ptr]) != ' ' {
+		problemId += string(cmd[ptr])
+		ptr++
+	}
 
 	return contestId, problemId, nil
 }
