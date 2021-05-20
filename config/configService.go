@@ -135,10 +135,8 @@ func CreateDefaultConfig() error {
 	CreateConfigDir()
 
 	cfg := Configuration{
-		Workspace:          "",
 		CompilationCommand: "g++",
 		CompilationArgs:    "-std=c++17",
-		CurrentContestId:   "",
 		OJ:                 "codeforces",
 		Host:               "https://codeforces.com",
 	}

@@ -25,7 +25,7 @@ Windows:
 8. If you have 'TemplatePath' with a template file, then few key texts of the template will be replaced as follows...
         KEY       |       REPLACED BY
 --------------------------------------------
-    %author%     |  'Author' mentioned in step 7
+    %author%      |  'Author' mentioned in step 7
     %problem%     |  'Problem Name' if the Problem is parsed by 'parse' or 'create' command
     %datetime%    |  'Current date and time' in format '2-Jan-2006 15:04:05'
 
