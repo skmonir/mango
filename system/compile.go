@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"os"
 	"os/exec"
 	"time"
 
@@ -24,7 +25,7 @@ func getCompilationCommand(cfg config.Configuration, problemId string) (string, 
 	return command, nil
 }
 
-func CompileSource(cfg config.Configuration, problemId string) error {
+func CompileSource(cfg config.Configuration, problemId string, showStdError bool) error {
 	command, err := getCompilationCommand(cfg, problemId)
 	if err != nil {
 		return err
@@ -36,7 +37,9 @@ func CompileSource(cfg config.Configuration, problemId string) error {
 	defer cancel()
 
 	cmd := exec.CommandContext(ctx, cmds[0], cmds[1:]...)
-	// cmd.Stderr = os.Stderr
+	if showStdError {
+		cmd.Stderr = os.Stderr
+	}
 
 	if err := cmd.Run(); err != nil {
 		return errors.New("compile error")
@@ -60,7 +63,7 @@ func Compile(cfg config.Configuration, cmd string) error {
 		return errors.New("please set contest & problem id combination like 1512G")
 	}
 
-	if err := CompileSource(cfg, problemId); err != nil {
+	if err := CompileSource(cfg, problemId, true); err != nil {
 		return err
 	}
 

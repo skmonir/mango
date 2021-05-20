@@ -27,8 +27,10 @@ var sourceCmd = &cobra.Command{
 				ansi.Println(color.RedString("workspace directory path missing. run 'mango configure' to set workspace"))
 				return
 			}
-			if err := system.Open(cfg, args[0]); err != nil {
+			if err := system.Source(cfg, args[0]); err != nil {
 				ansi.Println(color.RedString(err.Error()))
+			} else {
+				ansi.Println(color.GreenString("source created successfully"))
 			}
 		}
 	},

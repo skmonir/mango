@@ -92,7 +92,7 @@ func RunTest(cfg config.Configuration, cmd string) error {
 		ansi.Println(color.New(color.FgCyan).Sprintf("Time Limit: %v sec, Memory Limit: %v MB\n", problemInfo.TimeLimit, problemInfo.MemoryLimit))
 	}
 
-	if err := CompileSource(cfg, problemId); err != nil {
+	if err := CompileSource(cfg, problemId, false); err != nil {
 		ansi.Println(color.RedString(err.Error()))
 		return nil
 	}
