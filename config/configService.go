@@ -199,7 +199,7 @@ func Configure() error {
 	case "linux":
 		err = exec.Command("xdg-open", cfgPath).Run()
 	case "windows":
-		exec.Command("cmd", cfgPath).Run()
+		exec.Command("cmd", fmt.Sprintf("/C start %v", cfgPath)).Run()
 	case "darwin":
 		err = exec.Command("open", cfgPath).Run()
 	default:
