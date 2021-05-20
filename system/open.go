@@ -1,6 +1,7 @@
 package system
 
 import (
+	"fmt"
 	"errors"
 	"os/exec"
 	"runtime"
@@ -21,7 +22,7 @@ func OpenContest(cfg config.Configuration, problemIdList []string) error {
 		case "linux":
 			err = exec.Command("xdg-open", sourcePath).Run()
 		case "windows":
-			exec.Command("cmd /c start", sourcePath).Run()
+			exec.Command("cmd", fmt.Sprintf("/C start %v", sourcePath)).Run()
 		case "darwin":
 			err = exec.Command("open", sourcePath).Run()
 		default:
