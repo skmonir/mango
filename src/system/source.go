@@ -73,6 +73,9 @@ func CreateSource(cfg config.Configuration, problemId string) error {
 		return err
 		// ansi.Println(color.New(color.FgRed).Sprintf("error while creating source for task %v", problemId))
 	}
+	if err := CopyTemplateToSource(cfg, problemId); err != nil {
+		return err
+	}
 	return nil
 }
 

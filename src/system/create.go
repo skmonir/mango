@@ -15,7 +15,6 @@ func CreateProblem(cfg config.Configuration, problemId string) error {
 	if err := CreateSource(cfg, problemId); err != nil {
 		return err
 	}
-	CopyTemplateToSource(cfg, problemId)
 	OpenProblem(cfg, problemId)
 	return nil
 }
@@ -32,7 +31,6 @@ func CreateContest(cfg config.Configuration) error {
 	}
 
 	CreateSourceList(cfg, problemIdList)
-	CopyTemplateToSourceList(cfg, problemIdList)
 	OpenContest(cfg, problemIdList)
 
 	return err
