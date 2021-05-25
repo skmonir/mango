@@ -8,8 +8,8 @@ import (
 	"os/exec"
 	"time"
 
-	"github.com/skmonir/mango/config"
-	"github.com/skmonir/mango/utils"
+	"github.com/skmonir/mango/src/config"
+	"github.com/skmonir/mango/src/utils"
 )
 
 func getCompilationCommand(cfg config.Configuration, problemId string) (string, error) {

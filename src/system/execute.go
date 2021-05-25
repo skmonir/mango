@@ -7,9 +7,9 @@ import (
 	"time"
 
 	"github.com/shirou/gopsutil/process"
-	"github.com/skmonir/mango/config"
-	"github.com/skmonir/mango/dto"
-	"github.com/skmonir/mango/utils"
+	"github.com/skmonir/mango/src/config"
+	"github.com/skmonir/mango/src/dto"
+	"github.com/skmonir/mango/src/utils"
 )
 
 func getExecutionCommand(cfg config.Configuration, problemId string) string {

@@ -1,15 +1,15 @@
 package system
 
 import (
-	"fmt"
 	"errors"
+	"fmt"
 	"os/exec"
 	"runtime"
 
 	"github.com/fatih/color"
 	"github.com/k0kubun/go-ansi"
-	"github.com/skmonir/mango/config"
-	"github.com/skmonir/mango/utils"
+	"github.com/skmonir/mango/src/config"
+	"github.com/skmonir/mango/src/utils"
 )
 
 // https://gist.github.com/hyg/9c4afcd91fe24316cbf0

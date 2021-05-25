@@ -12,9 +12,9 @@ import (
 
 	"github.com/fatih/color"
 	"github.com/k0kubun/go-ansi"
-	"github.com/skmonir/mango/config"
-	"github.com/skmonir/mango/dto"
-	"github.com/skmonir/mango/utils"
+	"github.com/skmonir/mango/src/config"
+	"github.com/skmonir/mango/src/dto"
+	"github.com/skmonir/mango/src/utils"
 )
 
 // Implementation idea's are collected from https://github.com/xalanq/cf-tool/blob/master/client/parse.go

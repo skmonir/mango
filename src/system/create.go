@@ -3,8 +3,8 @@ package system
 import (
 	"errors"
 
-	"github.com/skmonir/mango/config"
-	"github.com/skmonir/mango/utils"
+	"github.com/skmonir/mango/src/config"
+	"github.com/skmonir/mango/src/utils"
 )
 
 func CreateProblem(cfg config.Configuration, problemId string) error {

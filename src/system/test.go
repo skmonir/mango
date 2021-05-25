@@ -9,9 +9,9 @@ import (
 	"github.com/fatih/color"
 	"github.com/jedib0t/go-pretty/v6/table"
 	"github.com/k0kubun/go-ansi"
-	"github.com/skmonir/mango/config"
-	"github.com/skmonir/mango/dto"
-	"github.com/skmonir/mango/utils"
+	"github.com/skmonir/mango/src/config"
+	"github.com/skmonir/mango/src/dto"
+	"github.com/skmonir/mango/src/utils"
 )
 
 func GetVerdict(testcase dto.Testcase, executionResult *dto.ExecutionResult) {
