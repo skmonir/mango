@@ -7,6 +7,7 @@ import (
 	"html"
 	"io/ioutil"
 	"regexp"
+	"strconv"
 	"strings"
 
 	"github.com/skmonir/mango/src/config"
@@ -42,12 +43,28 @@ func ParseMemoryInKb(memory uint64) string {
 	return fmt.Sprintf("%v KB", memory/1024)
 }
 
+func GetContestType(contestId string) string {
+	id, err := strconv.ParseInt(contestId, 10, 30)
+	if err != nil {
+		if len(contestId) > 5 {
+			return "gym"
+		}
+		return "contest"
+	}
+	if id > 100000 {
+		return "gym"
+	}
+	return "contest"
+}
+
 func GetContestUrl(cfg config.Configuration) string {
-	return fmt.Sprintf("%v/contest/%v", cfg.Host, cfg.CurrentContestId)
+	contestType := GetContestType(cfg.CurrentContestId)
+	return fmt.Sprintf("%v/%v/%v", cfg.Host, contestType, cfg.CurrentContestId)
 }
 
 func GetProblemUrl(cfg config.Configuration, problemId string) string {
-	return fmt.Sprintf("%v/contest/%v/problem/%v", cfg.Host, cfg.CurrentContestId, problemId)
+	contestType := GetContestType(cfg.CurrentContestId)
+	return fmt.Sprintf("%v/%v/%v/problem/%v", cfg.Host, contestType, cfg.CurrentContestId, problemId)
 }
 
 func FilterHtml(src []byte) []byte {
