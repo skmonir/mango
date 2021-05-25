@@ -3,7 +3,7 @@ package cmd
 import (
 	"github.com/fatih/color"
 	"github.com/k0kubun/go-ansi"
-	"github.com/skmonir/mango/config"
+	"github.com/skmonir/mango/src/config"
 	"github.com/skmonir/mango/src/system"
 	"github.com/spf13/cobra"
 )

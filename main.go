@@ -1,8 +1,6 @@
 package main
 
-import (
-	"github.com/skmonir/mango/cmd"
-)
+import "github.com/skmonir/mango/src/cmd"
 
 func main() {
 	cmd.Execute()
