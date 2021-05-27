@@ -1,21 +1,6 @@
 'mango' is a task parser and tester for popular online judge 'Codeforces'. It supports the regular contest and gym.
 
 
-WORKSPACE STRUCTURE:
-workspace
-    |--codeforces
-        |--1521
-            |--src
-                |--a.cpp
-                |--b.cpp
-            |--testcase
-                |--a.json
-                |--b.json
-
-
-
-
-
 INSTALLATION:
 Windows:
 1. Keep 'mango.exe' in any folder you prefer
@@ -40,9 +25,9 @@ Linux:
     %author%      |  'Author' mentioned in step 7
     %problem%     |  'Problem Name' if the Problem is parsed by 'parse' or 'create' command
     %datetime%    |  'Current date and time' in format '2-Jan-2006 15:04:05'
-Example:
+Example:<br>
 ![](./assets/Template-From.png)
-![](./assets/Template-To.png)
+![](./assets/Template-To.png)<br>
 9. Enjoy!
 
 
