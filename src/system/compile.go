@@ -1,12 +1,10 @@
 package system
 
 import (
-	"context"
 	"errors"
 	"fmt"
 	"os"
 	"os/exec"
-	"time"
 
 	"github.com/skmonir/mango/src/config"
 	"github.com/skmonir/mango/src/utils"
@@ -33,10 +31,11 @@ func CompileSource(cfg config.Configuration, problemId string, showStdError bool
 
 	cmds := utils.ParseCommand(command)
 
-	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
-	defer cancel()
+	// ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
+	// defer cancel()
+	// cmd := exec.CommandContext(ctx, cmds[0], cmds[1:]...)
 
-	cmd := exec.CommandContext(ctx, cmds[0], cmds[1:]...)
+	cmd := exec.Command(cmds[0], cmds[1:]...)
 	if showStdError {
 		cmd.Stderr = os.Stderr
 	}
