@@ -1,6 +1,7 @@
 # Introduction
 'mango' is a CLI based task parser and tester for popular online judge 'Codeforces'. It supports the regular contest and gym.
 
+# Download
 
 # Installation
 Windows:<br>
@@ -25,6 +26,24 @@ May be similar to mac. Didn't try in linux.
 
 
 
+# Workspace Structure:
+```    
+workspace
+├── codeforces
+│   └── 1521
+│       ├── src
+│       │   ├── a.cpp
+│       │   ├── b.cpp
+│       │   │
+│       │   │
+│       │   └── e.cpp
+│       └── testcase
+│       │   ├── a.json
+│       │   ├── b.json
+│       │   │
+│       │   │
+│       │   └── e.json
+```
 
 # Command Format
 `mango <command> <argument>`
@@ -34,7 +53,7 @@ May be similar to mac. Didn't try in linux.
 
 
 # Available Commands as example
-1. `mango setc 1521`: sets current working contest
+1. `mango setc 1521`: sets current working contest ID
 2. `mango configure`: opens the config.json file to update & save configuration
 
 3. `mango parse 1521`: command 1 + parses samples of all the problems for specified contest ID
@@ -55,3 +74,5 @@ May be similar to mac. Didn't try in linux.
 
 14. `mango test 1521A`: command 12 + tests Problem A for specified contest ID
 15. `mango test A`: command 13 + tests Problem A for current working contest ID
+
+16. `mango version`: prints the current mango version
