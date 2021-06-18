@@ -2,6 +2,7 @@
 'mango' is a CLI based task parser and tester for popular online judge 'Codeforces'. It supports the regular contest and gym. All of the functionalities of this CLI works for only C++ language.
 
 # Download
+Head over to the [release page](https://github.com/skmonir/mango/releases) to download the latest mango that is compatible with your system and os.
 
 # Installation
 Windows:<br>
