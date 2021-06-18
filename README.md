@@ -5,31 +5,23 @@
 # Installation
 Windows:<br>
 1. Keep 'mango.exe' in any folder you prefer
-2. Add the folder path from step 1 to System Variable Path
+2. Add the folder path from step 1 to System Variable Path. (How to add path in System Var? See here: https://www.architectryan.com/2018/03/17/add-to-the-path-on-windows-10/)
 
 Mac:<br>
 1. Keep 'mango' executable file at /usr/local/bin folder
 2. Change the permission of the file by 'chmod +x mango' command.
 
 Linux:<br>
-...Will update later
+May be similar to mac. Didn't try in linux.
 
-3. Set default programs to open .cpp & .json files
-4. Open cmd from anywhere and run 'mango configure'. It will open config.json file. Configure as you prefer. But DO NOT CHANGE the OJ and Host property.
+# Configuration
+1. Set default programs to open .cpp & .json files. (How to change default programs in windows? See here: https://www.digitaltrends.com/computing/how-to-change-file-associations/)
+2. Open cmd prompt from anywhere and run 'mango configure'. It will open config.json file. Or go to AppData>Roaming>mango, you'll find the config.json file. Now configure as you prefer. But DO NOT CHANGE the OJ and Host property.
 ![](./assets/Configuration_Json.png)
-5. Set 'Workspace' as the full path of the folder where all of the contest sources and testcases will be stored
-6. Set 'TemplatePath' as the full path of your template file.
-7. Set 'Author' as your username/handle or anything name you prefer. It will be used in your template(if any).
-8. If you have 'TemplatePath' with a template file, then few key texts of the template will be replaced as follows...
-        KEY       |       REPLACED BY
---------------------------------------------
-    %author%      |  'Author' mentioned in step 7
-    %problem%     |  'Problem Name' if the Problem is parsed by 'parse' or 'create' command
-    %datetime%    |  'Current date and time' in format '2-Jan-2006 15:04:05'
-Example:<br>
-![](./assets/Template-From.png)
-![](./assets/Template-To.png)<br>
-9. Enjoy!
+3. Set 'Workspace' as the full path of the folder where all of the contest sources and testcases will be stored
+4. Set 'TemplatePath' as the full path of your template file. If you ommit TemplatePath, a default template will be created for the source file.
+5. Set 'Author' as your username/handle or anything name you prefer. It will be used in your template.
+6. Enjoy!
 
 
 
