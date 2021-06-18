@@ -76,3 +76,30 @@ workspace
 15. `mango test A`: command 13 + tests Problem A for current working contest ID
 
 16. `mango version`: prints the current mango version
+
+
+# Configure mango with Sublime Text
+We can directly test our code from Sublime Text through the custom build system. To configure the sublime build system in Windows, please follow the instructions below..
+1. From Sublime Text menubar, go to Tools > Build System > New Build System
+2. Copy & Paste the following code
+  ```
+  {
+	"shell_cmd": "mango test \"${file_base_name}\"",
+	"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+	"working_dir": "${file_path}",
+	"selector": "source.c, source.cc, source.c++, source.cpp",
+
+	"variants":
+	[
+		{
+			"name": "Interactive",
+			"shell_cmd": "start cmd /k mango test \"${file_base_name}\" & pause & exit\""
+		}
+	]
+}
+  ```
+3. Press Ctrl+S to save the file. Give it a name like `cpp_mango_tester.sublime-build` and save.
+4. Go to Tools > Build System. You will find your build name(i.e `cpp_mango_tester`) in the list. Select the build name.
+5. Now create a problem or contest by 'mango create' command and write your code.
+6. This step needs to be done only once. Goto Tools > Build With (Shortcut Ctrl+Shift+B), a pop-up will appear on top-center of the screen. Select `cpp_mango_tester - Interactive` from the pop-up.
+7. To test your code from Sublime Text, go to Tools > Build.
