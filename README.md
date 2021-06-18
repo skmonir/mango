@@ -22,7 +22,7 @@ Linux:<br>
 May be similar to mac. Didn't try in linux.
 
 # Configuration
-1. Set default programs to open .cpp & .json files. (How to change default programs in windows? See here: https://www.digitaltrends.com/computing/how-to-change-file-associations/)
+1. Set default programs(like Sublime Text, VS Code, Code Blocks etc.) to open .cpp & .json files. (How to change default programs in windows? See here: https://www.digitaltrends.com/computing/how-to-change-file-associations/)
 2. Open command prompt from anywhere and run 'mango configure'. It will open config.json file. Or go to AppData>Roaming>mango, you'll find the config.json file there. Now configure as you prefer. But DO NOT CHANGE the OJ and Host property. The config.json file looks like the following..
 ```
 {
@@ -83,7 +83,7 @@ workspace
 8. `mango open 1521A`: opens source file of Problem A in the default editor for specified contest ID
 9. `mango open A`: opens source file of Problem A in the default editor for current working contest ID
 
-10. `mango create 1521`: combination of commands (1, 3, 5, 7) for specified contest ID
+10. `mango create 1521`: combination of commands (1, 3, 7) for specified contest ID
 11. `mango create 1521A`: combination of commands (1, 4, 6, 8) for Problem A
 
 12. `mango compile 1521A`: compiles source file of Problem A for specified contest ID
