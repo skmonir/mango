@@ -26,12 +26,19 @@ May be similar to mac. Didn't try in linux.
 
 
 
-# Available Commands
+# Command Format
+`mango <command> <argument>`
+
+=> Only `configure` and `version` commands don't need any argument.<br>
+=> For other comamnds, the argument format is `<contest_id><problem_id>`. But both `<contest_id>`and `<problem_id>` are optional for corresponding command.
+
+
+# Available Commands as example
 1. `mango setc 1521`: sets current working contest
 2. `mango configure`: opens the config.json file to update & save configuration
 
-3. `mango parse 1521`: step 1 + parses samples of all the problems for specified contest ID
-4. `mango parse 1521A`: step 1 + parses samples of Problem A for specified contest ID
+3. `mango parse 1521`: command 1 + parses samples of all the problems for specified contest ID
+4. `mango parse 1521A`: command 1 + parses samples of Problem A for specified contest ID
 
 5. `mango source 1521A`: creates source file of Problem A for specified contest ID
 6. `mango source A`: creates source file of Problem A for current working contest ID
@@ -40,11 +47,11 @@ May be similar to mac. Didn't try in linux.
 8. `mango open 1521A`: opens source file of Problem A in the default editor for specified contest ID
 9. `mango open A`: opens source file of Problem A in the default editor for current working contest ID
 
-10. `mango create 1521`: combination of steps (1, 3, 5, 7) for specified contest ID
-11. `mango create 1521A`: combination of steps (1, 4, 6, 8) for Problem A
+10. `mango create 1521`: combination of commands (1, 3, 5, 7) for specified contest ID
+11. `mango create 1521A`: combination of commands (1, 4, 6, 8) for Problem A
 
 12. `mango compile 1521A`: compiles source file of Problem A for specified contest ID
 13. `mango compile A`: compiles source file of Problem A for current working contest ID
 
-14. `mango test 1521A`: step 12 + tests Problem A for specified contest ID
-15. `mango test A`: step 13 + tests Problem A for current working contest ID
+14. `mango test 1521A`: command 12 + tests Problem A for specified contest ID
+15. `mango test A`: command 13 + tests Problem A for current working contest ID
