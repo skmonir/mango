@@ -1,5 +1,5 @@
 # Introduction
-'mango' is a CLI based task parser and tester for popular online judge 'Codeforces'. It supports the regular contest and gym.
+'mango' is a CLI based task parser and tester for popular online judge 'Codeforces'. It supports the regular contest and gym. All of the functionalities of this CLI works for only C++ language.
 
 # Download
 
@@ -17,8 +17,19 @@ May be similar to mac. Didn't try in linux.
 
 # Configuration
 1. Set default programs to open .cpp & .json files. (How to change default programs in windows? See here: https://www.digitaltrends.com/computing/how-to-change-file-associations/)
-2. Open cmd prompt from anywhere and run 'mango configure'. It will open config.json file. Or go to AppData>Roaming>mango, you'll find the config.json file. Now configure as you prefer. But DO NOT CHANGE the OJ and Host property.
-![](./assets/Configuration_Json.png)
+2. Open command prompt from anywhere and run 'mango configure'. It will open config.json file. Or go to AppData>Roaming>mango, you'll find the config.json file there. Now configure as you prefer. But DO NOT CHANGE the OJ and Host property. The config.json file looks like the following..
+```
+{
+ "Workspace": 		"C:/Users/SkMonir/Desktop/Contest",
+ "CompilationCommand":  "g++",
+ "CompilationArgs": 	"-std=c++17",
+ "CurrentContestId": 	"1520",
+ "OJ": 			"codeforces",
+ "Host": 		"https://codeforces.com",
+ "TemplatePath": 	"C:/Users/SkMonir/Desktop/Contest/template.cpp",
+ "Author": 		"skmonir"
+}
+```
 3. Set 'Workspace' as the full path of the folder where all of the contest sources and testcases will be stored
 4. Set 'TemplatePath' as the full path of your template file. If you ommit TemplatePath, a default template will be created for the source file.
 5. Set 'Author' as your username/handle or anything name you prefer. It will be used in your template.
@@ -37,7 +48,7 @@ workspace
 │       │   │
 │       │   │
 │       │   └── e.cpp
-│       └── testcase
+│       ├── testcase
 │       │   ├── a.json
 │       │   ├── b.json
 │       │   │
@@ -79,12 +90,11 @@ workspace
 
 
 # Configure mango with Sublime Text
-We can directly test our code from Sublime Text through the custom build system. To configure the sublime build system in Windows, please follow the instructions below..
-1. From Sublime Text menubar, go to Tools > Build System > New Build System
-2. Copy & Paste the following code
+Apart from running our program in command prompt in windows, we can also directly test our program from Sublime Text through the custom build system. To configure the sublime build system in Windows, please follow the instructions below..
+1. From Sublime Text menubar, go to `Tools > Build System > New Build System`. It will open a file.
+2. Delete the content from the file and copy & paste the following code
   ```
-  {
-	"shell_cmd": "mango test \"${file_base_name}\"",
+{
 	"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
 	"working_dir": "${file_path}",
 	"selector": "source.c, source.cc, source.c++, source.cpp",
@@ -92,14 +102,18 @@ We can directly test our code from Sublime Text through the custom build system.
 	"variants":
 	[
 		{
-			"name": "Interactive",
+			"name": "RunOnCmdPrompt",
+			"shell_cmd": "g++ -O2 -static -std=gnu++17 \"${file}\" -o \"${file_base_name}\" && start cmd /k \"${file_base_name} & pause & exit\""
+		},
+		{
+			"name": "RunOnMangoTester",
 			"shell_cmd": "start cmd /k mango test \"${file_base_name}\" & pause & exit\""
 		}
 	]
 }
   ```
-3. Press Ctrl+S to save the file. Give it a name like `cpp_mango_tester.sublime-build` and save.
-4. Go to Tools > Build System. You will find your build name(i.e `cpp_mango_tester`) in the list. Select the build name.
-5. Now create a problem or contest by 'mango create' command and write your code.
-6. This step needs to be done only once. Goto Tools > Build With (Shortcut Ctrl+Shift+B), a pop-up will appear on top-center of the screen. Select `cpp_mango_tester - Interactive` from the pop-up.
-7. To test your code from Sublime Text, go to Tools > Build.
+3. Press Ctrl+S to save the file. Give it a name like `cpp_custom_build.sublime-build` and save.
+4. Go to `Tools > Build System`. We will find our custom build name(i.e `cpp_custom_build`) in the list. Select the build name.
+5. Now create a problem or contest by 'mango create' command and write the code.
+6. To test our code from mango, we have to select our build variant only for once. Go to `Tools > Build With` (Shortcut Ctrl+Shift+B), a pop-up will appear on top-center of the screen. Select `cpp_custom_build - RunOnMangoTester` from the pop-up. Now for every test, just go to `Tools > Build` and a console will open with the test result.
+7. To run our program from Command Prompt, we need to change our build variant like the previous step. But in this case we will select `cpp_custom_build - RunOnCmdPrompt` from the pop-up. Now go to `Tools > Build` to run the program and it will open a console where we can give input for the program.
