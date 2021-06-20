@@ -11,6 +11,7 @@ import (
 	"github.com/k0kubun/go-ansi"
 	"github.com/skmonir/mango/src/config"
 	"github.com/skmonir/mango/src/dto"
+	"github.com/skmonir/mango/src/intel"
 	"github.com/skmonir/mango/src/utils"
 )
 
@@ -77,6 +78,15 @@ func RunTest(cfg config.Configuration, cmd string) error {
 	if contestId != "" {
 		cfg.CurrentContestId = contestId
 	}
+	if wCfg := intel.WhereAmI(); cfg.CurrentContestId == "" && wCfg != nil {
+		cfg.Workspace = wCfg.Workspace
+		cfg.CurrentContestId = wCfg.CurrentContestId
+		cfg.OJ = wCfg.OJ
+
+		ansi.Println(color.WhiteString("guessed! Workspace:%s, OJ:%s, Contest:%s", cfg.Workspace, cfg.OJ, cfg.CurrentContestId))
+
+	}
+
 	if cfg.CurrentContestId == "" {
 		return errors.New("please set current contest id or use contest & problem id combination like 1512G")
 	}

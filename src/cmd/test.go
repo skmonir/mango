@@ -25,7 +25,7 @@ var testCmd = &cobra.Command{
 			}
 			if cfg.Workspace == "" {
 				ansi.Println(color.RedString("workspace directory path missing. run 'mango configure' to set workspace"))
-				return
+				ansi.Println(color.WhiteString("guessing workspace, platform and contestID from current directory"))
 			}
 			if err := system.RunTest(cfg, args[0]); err != nil {
 				ansi.Println(color.RedString(err.Error()))
