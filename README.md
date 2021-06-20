@@ -18,8 +18,8 @@ Windows:<br>
 3. Open Command Prompt and run `mango version` to test if everything works fine.
 
 Mac:<br>
-1. Keep 'mango' executable file at /usr/local/bin folder
-2. Change the permission of the file by 'chmod +x mango' command.
+1. Keep 'mango' executable file at `/usr/local/bin` folder
+2. Change the permission of the file by ```chmod +x mango``` command.
 3. Open Terminal and run `mango version` to test if everything works fine.
 
 Linux:<br>
@@ -27,7 +27,7 @@ May be similar to mac. Didn't try in linux.
 
 # Configuration
 1. Set default programs(like Sublime Text, VS Code, Code Blocks etc.) to open .cpp & .json files. (How to change default programs in windows? See here: https://www.digitaltrends.com/computing/how-to-change-file-associations/)
-2. Open command prompt and run 'mango configure'. It will open config.json file. Or go to AppData>Roaming>mango, you'll find the config.json file there. Now configure as you prefer. But DO NOT CHANGE the OJ and Host property. The config.json file looks like the following..
+2. Open command prompt and run 'mango configure'. It will open config.json file. Or in windows, go to AppData>Roaming>mango, you'll find the config.json file there. Now configure as you prefer. But DO NOT CHANGE the OJ and Host property. The config.json file looks like the following..
 ```
 {
  "Workspace": 		"C:/Users/SkMonir/Desktop/Contest",
@@ -47,6 +47,8 @@ May be similar to mac. Didn't try in linux.
 7. Enjoy!
 
 
+> **_NOTE:_**  DO NOT USE any variable as configuration value. For example, do not use `~/contest`, rather use `/home/user/contest` for directory path.
+
 
 # Workspace Structure:
 ```    
@@ -54,23 +56,23 @@ workspace
 ├── codeforces
 │   └── 1521
 │       ├── src
-│       │   ├── a.cpp
-│       │   ├── b.cpp
+│       │   ├── A.cpp
+│       │   ├── B.cpp
 │       │   │
 │       │   │
-│       │   └── e.cpp
+│       │   └── E.cpp
 │       ├── testcase
-│       │   ├── a.json
-│       │   ├── b.json
+│       │   ├── A.json
+│       │   ├── B.json
 │       │   │
 │       │   │
-│       │   └── e.json
+│       │   └── E.json
 ```
 
 # Command Format
 `mango <command> <argument>`
 
-=> Only `configure` and `version` commands don't need any argument.<br>
+=> Only `configure`, `version` and `help` commands don't need any argument.<br>
 => For other comamnds, the argument format is `<contest_id><problem_id>`. But both `<contest_id>`and `<problem_id>` are optional for corresponding command.
 
 
@@ -102,6 +104,8 @@ All of the commands can be run from Command Prompt or Terminal.
 16. `mango version`: shows the current mango version
 17. `mango help`: shows help docs
 
+> **_NOTE:_**  The source and testcase filenames are CASE SENSITIVE in Mac and Linux. The filenames are parsed from Codeforces problem name labels(such as A, B, F1, F2 etc.). So BE CAREFULL when using the problem ID in commands, it should be as same as the filename.
+
 
 # Configure `mango` with Sublime Text [for Sublime Text users only]
 Apart from running our program in command prompt in windows, we can also directly test our program from Sublime Text through the custom build system. To configure the sublime build system in Windows, please follow the instructions below..
@@ -129,5 +133,5 @@ Apart from running our program in command prompt in windows, we can also directl
 3. Press Ctrl+S to save the file. Give it a name like `cpp_custom_build.sublime-build` and save.
 4. Go to `Tools > Build System`. We will find our custom build name(i.e `cpp_custom_build`) in the list. Select the build name.
 5. Now create a problem or contest by 'mango create' command and write the code.
-6. To test our code from mango, we have to select our build variant only for once. Go to `Tools > Build With` (Shortcut Ctrl+Shift+B), a pop-up will appear on top-center of the screen. Select `cpp_custom_build - RunOnMangoTester` from the pop-up. Now for every test, just go to `Tools > Build` and a console will open with the test result.
+6. To test our code from mango, we have to select our build variant only for once. Go to `Tools > Build With` (Shortcut <kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>B</kbd>), a pop-up will appear on top-center of the screen. Select `cpp_custom_build - RunOnMangoTester` from the pop-up. Now for every test, just go to `Tools > Build` and a console will open with the test result.
 7. To run our program from Command Prompt for custom testing, we need to change our build variant like the previous step. But in this case we will select `cpp_custom_build - RunOnCmdPrompt` from the pop-up. Now go to `Tools > Build` to run the program and it will open a console where we can give input and see output for the program.
