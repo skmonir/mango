@@ -9,4 +9,6 @@ type Configuration struct {
 	Host               string
 	TemplatePath       string
 	Author             string
+	SrcDir             string
+	TestDir            string
 }

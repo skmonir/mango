@@ -7,7 +7,7 @@ import (
 )
 
 func GetSourceDirPath(cfg config.Configuration) string {
-	return filepath.Join(cfg.Workspace, cfg.OJ, cfg.CurrentContestId, "src")
+	return filepath.Join(cfg.Workspace, cfg.OJ, cfg.CurrentContestId, cfg.SrcDir)
 }
 
 func GetSourceFilePathWithExt(cfg config.Configuration, problemId string) string {
@@ -19,7 +19,7 @@ func GetSourceFilePathWithoutExt(cfg config.Configuration, problemId string) str
 }
 
 func GetTestcaseDirPath(cfg config.Configuration) string {
-	return filepath.Join(cfg.Workspace, cfg.OJ, cfg.CurrentContestId, "testcase")
+	return filepath.Join(cfg.Workspace, cfg.OJ, cfg.CurrentContestId, cfg.TestDir)
 }
 
 func GetTestcaseFilePath(cfg config.Configuration, problemId string) string {

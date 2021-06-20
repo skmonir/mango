@@ -6,8 +6,26 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/fatih/color"
+	"github.com/k0kubun/go-ansi"
 	"github.com/skmonir/mango/src/config"
 )
+
+func GuessWorkspace(cfg *config.Configuration) bool {
+	ansi.Println(color.RedString("workspace directory path missing. run 'mango configure' to set workspace"))
+
+	guessed := WhereAmI()
+	if guessed == nil {
+		ansi.Println(color.RedString("couldn't guess workspace"))
+		return false
+	}
+	ansi.Println(color.WhiteString("guessing workspace"))
+	cfg.Workspace = guessed.Workspace
+	cfg.CurrentContestId = guessed.CurrentContestId
+	cfg.OJ = guessed.OJ
+	ansi.Println(color.GreenString("guessed! Workspace:%s, OJ:%s, Contest:%s", cfg.Workspace, cfg.OJ, cfg.CurrentContestId))
+	return true
+}
 
 func WhereAmI() *config.Configuration {
 	dir, err := os.Getwd()
