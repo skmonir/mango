@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"strings"
 
 	"github.com/skmonir/mango/src/config"
 	"github.com/skmonir/mango/src/utils"
@@ -15,7 +16,9 @@ func getCompilationCommand(cfg config.Configuration, problemId string) (string, 
 	filePathWithoutExt := utils.GetSourceFilePathWithoutExt(cfg, problemId)
 
 	if !utils.IsFileExist(filePathWithExt) {
-		return "", errors.New("source file not found")
+		if filePathWithExt = utils.GetSourceFilePathWithExt(cfg, strings.ToLower(problemId)); !utils.IsFileExist(filePathWithExt) {
+			return "", errors.New("source file not found")
+		}
 	}
 
 	command := fmt.Sprintf("%v %v %v -o %v", cfg.CompilationCommand, cfg.CompilationArgs, filePathWithExt, filePathWithoutExt)

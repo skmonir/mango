@@ -139,6 +139,8 @@ func CreateDefaultConfig() error {
 		CompilationArgs:    "-std=c++17",
 		OJ:                 "codeforces",
 		Host:               "https://codeforces.com",
+		SrcDir:             "src",
+		TestDir:            "testcase",
 	}
 
 	if err := SaveConfig(cfg); err != nil {

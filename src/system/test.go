@@ -77,6 +77,7 @@ func RunTest(cfg config.Configuration, cmd string) error {
 	if contestId != "" {
 		cfg.CurrentContestId = contestId
 	}
+
 	if cfg.CurrentContestId == "" {
 		return errors.New("please set current contest id or use contest & problem id combination like 1512G")
 	}
